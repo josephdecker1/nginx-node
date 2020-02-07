@@ -9,7 +9,7 @@ services:
       - "3001:3001"
   nginx: 
     depends_on:
-      - web
+      - website
     image: nginx:latest
     container_name: nginx
     volumes:
