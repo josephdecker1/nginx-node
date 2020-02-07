@@ -1,0 +1,20 @@
+version: "3"
+services:
+  web:
+    build: 
+      context: ./nodeApp
+      dockerfile: Dockerfile
+    container_name: web
+    ports:
+      - "3001:3001"
+  nginx: 
+    depends_on:
+      - web
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx:/usr/share/nginx/html
+    ports:
+      - 80:80
+      - 443:443
