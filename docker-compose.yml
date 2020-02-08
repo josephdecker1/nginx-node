@@ -9,7 +9,7 @@ services:
     networks:
       - app-network
     ports:
-      - "3001:3001"
+      - "3000:3000"
   nginx: 
     depends_on:
       - node_app
