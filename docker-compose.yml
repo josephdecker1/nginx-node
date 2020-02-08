@@ -31,7 +31,7 @@ services:
     container_name: certbot
     volumes:
       - certbot-etc:/etc/letsencrypt
-      - cerbot-var:/var/lib/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
       - ./nginx/html/:/usr/share/nginx/html
     depends_on: 
       - nginx
