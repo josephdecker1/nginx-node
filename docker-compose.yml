@@ -12,7 +12,7 @@ services:
       - "3001:3001"
   nginx: 
     depends_on:
-      - node-app
+      - node_app
     image: nginx:latest
     container_name: nginx
     restart: unless-stopped
