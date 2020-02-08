@@ -18,6 +18,7 @@ echo "sleeping for 5"
 sleep 5
 
 docker-compose stop nginx
+docker-compose logs certbot
 
 echo "sleeping for 5"
 sleep 5
