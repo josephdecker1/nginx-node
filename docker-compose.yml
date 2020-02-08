@@ -35,7 +35,7 @@ services:
       - ./nginx/html/:/usr/share/nginx/html
     depends_on: 
       - nginx
-    command: certonly --webroot --webroot-path=/usr/share/nginx/html --email josephdecker1@gmail.com --agree-tos --no-eff-email --staging -d testingexample.com  -d www.testingexample.com
+    command: certonly --webroot --webroot-path=/usr/share/nginx/html --email josephdecker1@gmail.com --agree-tos --no-eff-email --force-renewal -d testingexample.com  -d www.testingexample.com
     
 volumes:
   certbot-etc:
