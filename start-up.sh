@@ -2,7 +2,7 @@
 
 # wait for certbot to run and then replace the configuration file for nginx
 
-set -e
+set -ex
 
 # creating dir for certs for later
 mkdir -p dhparam
@@ -20,14 +20,14 @@ else
 fi
 
 
-echo "sleeping for 5"
-sleep 5
+echo "sleeping for 15"
+sleep 15
 
 docker-compose stop nginx
 docker-compose logs certbot
 
-echo "sleeping for 5"
-sleep 5
+echo "sleeping for 15"
+sleep 15
 
 rm nginx/nginx.conf 
 cp nginx/nginx.final.conf nginx/nginx.conf
