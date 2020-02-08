@@ -7,7 +7,7 @@ set -e
 # creating dir for certs for later
 mkdir -p dhparam
 
-cp nginx/nginx.initial.conf nginx.conf
+cp nginx/nginx.initial.conf nginx/nginx.conf
 
 docker-compose up -d
 
@@ -20,7 +20,7 @@ docker-compose stop nginx
 
 
 rm nginx/nginx.conf 
-cp nginx/nginx.final.conf nginx.conf
+cp nginx/nginx.final.conf nginx/nginx.conf
 
 docker-compose up -d --force-recreate --no-deps nginx
 
