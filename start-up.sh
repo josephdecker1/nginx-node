@@ -11,8 +11,14 @@ cp nginx/nginx.initial.conf nginx/nginx.conf
 
 docker-compose up -d
 
+if [ -f dhparam/dhparam-2048.pem ]
+then
+	echo "Found openssl file. Skipping"
+else
+	echo "OpenSSL not found. Creating..."
+  sudo openssl dhparam -out dhparam/dhparam-2048.pem 2048
+fi
 
-[ -f dhparam/dhparam-2048.pem ] && echo "Found openssl file. Skipping" || echo "OpenSSL not found. Creating..." && sudo openssl dhparam -out dhparam/dhparam-2048.pem 2048
 
 echo "sleeping for 5"
 sleep 5
