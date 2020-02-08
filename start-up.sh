@@ -9,7 +9,7 @@ mkdir -p dhparam
 
 cp nginx/nginx.initial.conf nginx.conf
 
-docker-compose start -d
+docker-compose up -d
 
 
 sudo openssl dhparam -out dhparam/dhparam-2048.pem 2048
