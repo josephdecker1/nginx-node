@@ -23,6 +23,7 @@ services:
       - ./nginx/html/:/usr/share/nginx/html
       - certbot-etc:/etc/letsencrypt
       - certbot-var:/var/lib/letsencrypt
+      - dhparam:/etc/ssl/certs
     ports:
       - 80:80
       - 443:443
@@ -40,6 +41,12 @@ services:
 volumes:
   certbot-etc:
   certbot-var:
+  dhparam:
+    driver: local
+    driver_opts:
+      type: none
+      device: /root/repos/nginx-node/dhparam
+      o: bind
 
 networks:
   app-network:
