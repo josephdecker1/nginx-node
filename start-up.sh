@@ -5,7 +5,7 @@
 set -e
 
 # creating dir for certs for later
-mkdir dhparam
+mkdir -p dhparam
 
 cp nginx/nginx.initial.conf nginx.conf
 
