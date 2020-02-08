@@ -1,10 +1,13 @@
 version: "3"
 services:
-  website:
+  node_app:
     build: 
       context: ./nodeApp
       dockerfile: Dockerfile
-    container_name: web
+    container_name: node-app
+    restart: unless-stopped
+    networks:
+      - app-network
     ports:
       - "3001:3001"
   nginx: 
@@ -12,9 +15,31 @@ services:
       - website
     image: nginx:latest
     container_name: nginx
+    restart: unless-stopped
+    networks:
+      - app-network
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/html/:/usr/share/nginx/html
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
     ports:
       - 80:80
       - 443:443
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - cerbot-var:/var/lib/letsencrypt
+      - ./nginx/html/:/usr/share/nginx/html
+    depends_on: 
+      - nginx
+    command: certonly --webroot --webroot-path=/usr/share/nginx/html --email josephdecker1@gmail.com --agree-tos --no-eff-email --staging -d testingexample.com  -d www.testingexample.com
+volumes:
+  certbot-etc:
+  certbot-var:
+
+networks:
+  app-network:
+    driver: bridge
